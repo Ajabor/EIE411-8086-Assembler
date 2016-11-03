@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Harry</title>
+    </head>
+    <script type="text/javascript">
+        //bobbyharry35@yahoo.com
+        function wegood(){
+            //Output Fields
+            var BinDisplay = document.getElementById("BinDisplay"),   
+                HexDisplay = document.getElementById("HexDisplay");
+            
+            //Input field
+            var inp = document.getElementById("inCommand").value;
+            
+            var a = /JS/i,
+                b = / /i,
+                hexA = /(A|B|C|D|E|F)/i,
+                hexB = /[0-9]/i;
+            
+            var findJS = inp.search(a),
+                findSpace = inp.search(b),
+                findHexA = inp.search(hexA),
+                findHexB = inp.search(hexB);
+            
+            var operand = inp.substring(findSpace).trim();
+            
+            if(findJS >=0 && findSpace >= 0){
+                binJS = "01111000";
+                hexJS = parseInt(binJS, 2).toString(16);
+                
+                if((parseInt(operand) >= 0 || findHexA>=0 || findhexB>=0)&&(operand.length == 2 || operand.length == 4)){
+                    BinOperand = parseInt(operand, 16).toString(2);
+                    
+                    BinDisplay.innerHTML = binJS + " " + BinOperand;
+                    HexDisplay.innerHTML = hexJS + " " + operand;
+                }else{
+                    alert("Incomplete Instruction");
+                }
+            }else{
+                alert("Wrong Instruction");
+            }
+        }
+    
+    </script>
+    <body>
+        <input type="text" placeholder="Input Command" id="inCommand"/>
+        <input type="button" value="Convert" onclick="wegood();" />
+        <br/>
+        <bold>BINARY:  </bold><span id="BinDisplay"></span><br/>
+        <bold>HEX:  </bold><span id="HexDisplay"></span>
+    </body>
+</html>
